@@ -11,20 +11,24 @@ const Statistics = (props) => {
   const positive = (props.good/(total))*100
 
   return (
-    <div>
-      <StatisticLine text="good" value={props.good} />
-      <StatisticLine text="neutral" value={props.neutral} />
-      <StatisticLine text="bad" value={props.bad} />
-      <StatisticLine text="all" value={total} />
-      <StatisticLine text="average" value={average} />
-      <StatisticLine text="positive" value={positive} />
-    </div>
+    <table>
+      <tbody>
+        <StatisticLine text="good" value={props.good} />
+        <StatisticLine text="neutral" value={props.neutral} />
+        <StatisticLine text="bad" value={props.bad} />
+        <StatisticLine text="all" value={total} />
+        <StatisticLine text="average" value={average} />
+        <StatisticLine text="positive" value={positive} />
+      </tbody>
+    </table>
   )
 };
 
 const StatisticLine = (props) => {
   return (
-    <div>{props.text} {props.value}</div>
+    <tr>
+      <td>{props.text} {props.value}</td>
+    </tr>
   )
 };
 
