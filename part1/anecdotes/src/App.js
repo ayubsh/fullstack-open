@@ -1,5 +1,15 @@
 import { useState } from "react";
 
+const MaxAnecdote = (props) =>{
+  const maxis = Math.max(...props.points)
+  const indexOfMax = props.points.indexOf(maxis);
+  if (maxis === 0){
+    return <div>no vote yet</div>
+  }
+  return (
+    <div>{props.anecdotes[indexOfMax]}</div>
+  )
+};
 
 const App = () => {
    const anecdotes = [
@@ -13,7 +23,7 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0);
-  const [points, setPoints] = useState(Array(6).fill(0));
+  const [points, setPoints] = useState(Array(7).fill(0));
 
 
 
@@ -22,19 +32,21 @@ const App = () => {
   }
 
   const handleVotes = () => {
-    const votes = { ...points };
+    const votes = [ ...points ];
     votes[selected] += 1
     setPoints(votes);
   }
-  console.log(points)
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <div>has {points[selected]} votes</div>
       <div>
         <button onClick={handleSelected}>next anecdote</button>
         <button onClick={handleVotes}>vote</button>
       </div>
+      <h1>Anecdote with most votes</h1>
+      <MaxAnecdote points={points} anecdotes={anecdotes}/>
     </div>
  );
 }
